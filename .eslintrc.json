@@ -1,3 +1,144 @@
 {
-  "extends": "next/core-web-vitals"
+  "$schema": "https://json.schemastore.org/eslintrc.json",
+  "plugins": ["@typescript-eslint", "import"],
+  "extends": [
+    "plugin:@typescript-eslint/recommended",
+    "plugin:@typescript-eslint/recommended-requiring-type-checking",
+    "plugin:import/recommended",
+    "plugin:tailwindcss/recommended",
+    "plugin:import/typescript",
+    "prettier",
+    "next/core-web-vitals"
+  ],
+  "rules": {
+    // sort imports
+    "import/order": "error",
+
+    // no let exports
+    "import/no-mutable-exports": "error",
+
+    "import/no-cycle": "error",
+    "import/no-default-export": "error",
+
+    // allow {} even though it's unsafe but comes handy
+    "@typescript-eslint/ban-types": [
+      "error",
+      {
+        "types": {
+          "{}": false
+        }
+      }
+    ],
+
+    "@typescript-eslint/consistent-type-imports": [
+      "error",
+      {
+        "prefer": "type-imports",
+        "fixStyle": "inline-type-imports",
+        "disallowTypeAnnotations": false
+      }
+    ],
+
+    "import/no-duplicates": ["error", { "prefer-inline": true }],
+
+    // false negatives
+    "import/namespace": ["off"],
+
+    // we allow empty interfaces
+    "no-empty-pattern": "off",
+    "@typescript-eslint/no-empty-interface": "off",
+
+    // we allow empty functions
+    "@typescript-eslint/no-empty-function": "off",
+
+    // we sometimes use async functions that don't await anything
+    "@typescript-eslint/require-await": "off",
+
+
+    // allow unused vars prefixed with `_`
+    "@typescript-eslint/no-unused-vars": [
+      "error",
+      { "argsIgnorePattern": "^_", "varsIgnorePattern": "^_" }
+    ],
+
+    // numbers and booleans are fine in template strings
+    "@typescript-eslint/restrict-template-expressions": [
+      "error",
+      { "allowNumber": true, "allowBoolean": true }
+    ],
+    "import/prefer-default-export": "off",
+    "react/prop-types": "warn",
+    "@typescript-eslint/semi": ["warn"],
+    "@typescript-eslint/space-before-function-paren": [0],
+    "@typescript-eslint/triple-slash-reference": ["warn"],
+    "@typescript-eslint/comma-dangle": ["off"],
+    "react/react-in-jsx-scope": "off",
+    "@typescript-eslint/consistent-type-definitions": ["off"],
+    "@typescript-eslint/member-delimiter-style": ["warn"],
+    "@typescript-eslint/prefer-ts-expect-error": ["warn"],
+    "no-console": ["warn"],
+    "@typescript-eslint/indent": ["warn", 4],
+    "react/jsx-indent": ["warn", 4],
+    "react/jsx-indent-props": ["warn", 4],
+    "react/jsx-max-props-per-line": [
+      "warn",
+      {
+        "maximum": 1,
+        "when": "multiline"
+      }
+    ],
+    "react/jsx-first-prop-new-line": ["warn", "multiline"],
+    "react/jsx-closing-bracket-location": ["warn", "line-aligned"],
+    "react/jsx-closing-tag-location": ["warn"],
+    "@typescript-eslint/no-empty-function": ["warn"],
+    "@typescript-eslint/no-dynamic-delete": ["warn"],
+    "multiline-ternary": ["off"],
+    "ordered-imports/ordered-imports": [
+      "error",
+      {
+        "group-ordering": [
+          {
+            "name": "relative dir",
+            "match": "^[.].*",
+            "order": 2
+          },
+          {
+            "name": "node_modules",
+            "match": ".*",
+            "order": 1
+          }
+        ]
+      }
+    ],
+    "prettier/prettier": ["warn", {}, { "usePrettierrc": true }],
+    "no-use-before-define": "warn",
+    "@typescript-eslint/no-use-before-define": ["error"],
+    "react/jsx-filename-extension": [
+      "warn",
+      {
+        "extensions": [".tsx"]
+      }
+    ],
+    "no-shadow": "warn",
+    "@typescript-eslint/no-shadow": ["warn"],
+    "@typescript-eslint/explicit-function-return-type": ["off"],
+    "max-len": [
+      "warn",
+      {
+        "code": 100
+      }
+    ]
+  },
+
+  "overrides": [
+    {
+      "files": [
+        "src/app/**/*.ts?(x)"
+      ],
+      "rules": {
+        "import/no-default-export": "off"
+      }
+    }
+  ],
+  "ignorePatterns": ["*.js", "*.jsx"]
 }
