@@ -7,6 +7,6 @@ on:
 
 jobs:
   deploy-vercel:
-    needs: deploy-netlify
+    needs: deploy-vercel
     uses: ./.github/workflows/deploy-vercel.yml
     secrets: inherit
