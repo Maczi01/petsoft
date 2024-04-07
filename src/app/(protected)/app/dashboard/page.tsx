@@ -1,5 +1,5 @@
-import { Stats } from "@/components/stats";
-import { Branding } from "@/components/Branding";
+import { Stats } from "../../../../components/stats";
+import { Branding } from '../../../../components/branding'
 
 export default function Page() {
 	return (

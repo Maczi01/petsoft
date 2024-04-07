@@ -12,7 +12,7 @@ export default function Index() {
 	return (
 		<main
 			className="flex min-h-screen items-center justify-center gap-10
-     bg-[#5DC9A8] xl:flex-row"
+     bg-gradient-to-r from-indigo-500 from-10% via-sky-500 via-30% to-emerald-500 to-90% xl:flex-row"
 		>
 			<Image
 				src="https://bytegrad.com/course-assets/react-nextjs/petsoft-preview.png"
@@ -30,7 +30,7 @@ export default function Index() {
 				<p className="max-w-[600px] text-2xl font-medium">
 					Use Petsoft to easily keep track of you pets. Get lifetime access for $299
 				</p>
-				<div className="mt=10 space-x-3">
+				<div className="mt-10 space-x-3">
 					<Button asChild>
 						<Link href="/signup">Get started</Link>
 					</Button>
