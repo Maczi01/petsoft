@@ -20,9 +20,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
              h-6 min-w-12 items-center justify-center rounded-xl border-2
              border-black bg-slate-400/50 p-4"
                 >
-                    ENV: {nodeEnv}; Version: {version}
+                    ENV: {nodeEnv}, Version: {version}
                 </div>
             </body>
         </html>
-    );
+    );q
 }
