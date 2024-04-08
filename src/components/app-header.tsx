@@ -29,7 +29,8 @@ export const AppHeader = () => {
                             <Link
                                 href={route.path}
                                 className={cn(
-                                    'rounded-sm bg-black/10 px-2 py-1 text-white/70 transition hover:text-white focus:text-white',
+                                    'rounded-sm bg-black/10 px-2 py-1 text-white/70 transition ' +
+                                        'hover:text-white focus:text-white',
                                     {
                                         'bg-black/10 text-white': activePathName === route.path,
                                     },

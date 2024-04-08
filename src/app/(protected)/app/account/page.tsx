@@ -1,4 +1,4 @@
-export default function Index() {
+export default function Page() {
     /*
      * Replace the elements below with your own.
      *
@@ -6,8 +6,8 @@ export default function Index() {
      */
     return (
         <div>
-            <div className="wrapper">
-                <div id="welcome">
+            <div>
+                <div>
                     <h1>
                         <span> Hello there, </span>
                         Welcome pet-software 👋

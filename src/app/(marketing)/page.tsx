@@ -12,7 +12,8 @@ export default function Index() {
     return (
         <main
             className="flex min-h-screen items-center justify-center gap-10
-     bg-gradient-to-r from-indigo-500 from-10% via-sky-500 via-30% to-emerald-500 to-90% xl:flex-row"
+     bg-gradient-to-r from-indigo-500 from-10% via-sky-500 via-30%
+     to-emerald-500 to-90% xl:flex-row"
         >
             <Image
                 src="https://bytegrad.com/course-assets/react-nextjs/petsoft-preview.png"
