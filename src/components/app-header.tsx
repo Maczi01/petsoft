@@ -1,18 +1,18 @@
-"use client";
+'use client';
 
-import { Logo } from "../../src/components/Logo";
-import Link from "next/link";
-import { usePathname } from "next/navigation";
-import { cn } from "../lib/utils";
+import { Logo } from '../../src/components/Logo';
+import Link from 'next/link';
+import { usePathname } from 'next/navigation';
+import { cn } from '../lib/utils';
 
 const routes = [
     {
-        path: "/app/dashboard",
-        label: "Dashboard",
+        path: '/app/dashboard',
+        label: 'Dashboard',
     },
     {
-        path: "/app/account",
-        label: "Account",
+        path: '/app/account',
+        label: 'Account',
     },
 ];
 
@@ -24,16 +24,16 @@ export const AppHeader = () => {
             <Logo />
             <nav>
                 <ul className="flex gap-2 text-xs">
-                    {routes.map((route) => (
+                    {routes.map(route => (
                         <li key={route.path}>
                             <Link
                                 href={route.path}
-                                className={
-                                    cn("rounded-sm bg-black/10 px-2 py-1 text-white/70 transition hover:text-white focus:text-white",
-                                        {
-                                            "bg-black/10 text-white": activePathName === route.path,
-                                        })
-                                }
+                                className={cn(
+                                    'rounded-sm bg-black/10 px-2 py-1 text-white/70 transition hover:text-white focus:text-white',
+                                    {
+                                        'bg-black/10 text-white': activePathName === route.path,
+                                    },
+                                )}
                             >
                                 {route.label}
                             </Link>

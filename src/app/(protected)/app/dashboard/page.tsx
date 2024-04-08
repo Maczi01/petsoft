@@ -1,4 +1,4 @@
-import { Stats } from "../../../../components/stats";
+import { Stats } from '../../../../components/stats';
 import { Branding } from '../../../../components/branding';
 
 export default function Page() {

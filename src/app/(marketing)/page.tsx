@@ -1,14 +1,14 @@
-import Image from "next/image";
-import Link from "next/link";
-import { Logo } from "../../components/Logo";
-import { Button } from "../../components/ui/button";
+import Image from 'next/image';
+import Link from 'next/link';
+import { Logo } from '../../components/Logo';
+import { Button } from '../../components/ui/button';
 
 export default function Index() {
     /*
-	 * Replace the elements below with your own.
-	 *
-	 * Note: The corresponding styles are in the ./index.tailwind file.
-	 */
+     * Replace the elements below with your own.
+     *
+     * Note: The corresponding styles are in the ./index.tailwind file.
+     */
     return (
         <main
             className="flex min-h-screen items-center justify-center gap-10

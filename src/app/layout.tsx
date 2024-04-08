@@ -1,19 +1,15 @@
 import '../styles/globals.css';
-import {Inter} from 'next/font/google';
-import {version} from '../../package.json';
+import { Inter } from 'next/font/google';
+import { version } from '../../package.json';
 
-const inter = Inter({subsets: ['latin']});
+const inter = Inter({ subsets: ['latin'] });
 
 export const metadata = {
     title: 'Welcome to pet-software',
     description: 'Take care of your pets with pet-software',
 };
 
-export default function RootLayout({
-    children,
-}: {
-    children: React.ReactNode;
-}) {
+export default function RootLayout({ children }: { children: React.ReactNode }) {
     const nodeEnv = process.env.NODE_ENV;
     return (
         <html lang="en">
