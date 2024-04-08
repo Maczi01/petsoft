@@ -1,7 +1,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
-import { Logo } from '../../components/Logo';
-import { Button } from '../../components/ui/button';
+import {Logo} from '../../components/Logo';
+import {Button} from '../../components/ui/button';
 
 export default function Index() {
     /*
@@ -22,11 +22,9 @@ export default function Index() {
                 height={472}
             />
             <div>
-                <Logo />
+                <Logo/>
                 <h1 className="my-6 max-w-[500px] text-5xl font-semibold">
-                    Manage your
-                    <span className="font-extrabold"> pet daycare</span>
-                    pets with ease
+                    Manage your <span className="font-extrabold">pet</span> day care with ease
                 </h1>
                 <p className="max-w-[600px] text-2xl font-medium">
                     Use Petsoft to easily keep track of you pets. Get lifetime access for $299
