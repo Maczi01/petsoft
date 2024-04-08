@@ -16,8 +16,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             <body className={`${inter.className} min-h-screen bg-[#E5E8EC] text-sm text-zinc-900`}>
                 {children}
                 <div
-                    className="w-12 absolute bottom-8 right-8
-             flex h-6 items-center justify-center rounded-xl border-2 
+                    className="absolute bottom-8 right-8 flex
+             h-6 w-12 items-center justify-center rounded-xl border-2 
              border-black bg-slate-400/50 p-4"
                 >
                     ENV: {nodeEnv}; Version: {version}
