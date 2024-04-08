@@ -121,23 +121,6 @@
         "multiline-ternary": [
           "off"
         ],
-        "ordered-imports/ordered-imports": [
-          "error",
-          {
-            "group-ordering": [
-              {
-                "name": "relative dir",
-                "match": "^[.].*",
-                "order": 2
-              },
-              {
-                "name": "node_modules",
-                "match": ".*",
-                "order": 1
-              }
-            ]
-          }
-        ],
         "prettier/prettier": [
           "warn",
           {},
