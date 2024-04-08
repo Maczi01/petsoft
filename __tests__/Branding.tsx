@@ -8,7 +8,7 @@ describe('Branding Component', () => {
     test('renders the H1 component with correct text', () => {
         render(<Branding />);
         const h1Element = screen.getByRole('heading', { level: 1 });
-        expect(h1Element).toHaveTextContent('Pet Soft');
+        expect(h1Element).toHaveTextContent('PetSoft');
     });
 
     test('paragraph contains correct class and text', () => {
