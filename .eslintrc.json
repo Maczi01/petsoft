@@ -16,7 +16,7 @@
     "plugin:import/typescript",
     "prettier",
     "next/core-web-vitals",
-    "plugin-testing-library/react",
+    "plugin:testing-library/react",
     "plugin:jest-dom/recommended"
   ],
   "overrides": [

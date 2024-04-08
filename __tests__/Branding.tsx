@@ -1,7 +1,8 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom'; // For the extended matchers like .toBeInTheDocument()
-import { Branding } from '../src/components/branding';
+import { Branding } from '@/components/branding';
+
 describe('Branding Component', () => {
 
     test('renders the H1 component with correct text', () => {
