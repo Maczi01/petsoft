@@ -5,7 +5,8 @@
   },
   "plugins": [
     "@typescript-eslint",
-    "import"
+    "import",
+    "prettier"
   ],
   "extends": [
     "plugin:@typescript-eslint/recommended",
