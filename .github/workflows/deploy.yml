@@ -6,6 +6,11 @@ on:
       - master
 
 jobs:
+  deploy-netlify:
+    uses: ./.github/workflows/deploy-netlify.yml
+    secrets: inherit
+
   deploy-vercel:
-    uses: ./.github/actions/deploy-vercel
+    needs: deploy-netlify
+    uses: ./.github/workflows/deploy-vercel.yml
     secrets: inherit
