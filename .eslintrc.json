@@ -15,7 +15,9 @@
     "plugin:tailwindcss/recommended",
     "plugin:import/typescript",
     "prettier",
-    "next/core-web-vitals"
+    "next/core-web-vitals",
+    "plugin-testing-library/react",
+    "plugin:jest-dom/recommended"
   ],
   "overrides": [
     {
