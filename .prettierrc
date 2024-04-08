@@ -7,7 +7,7 @@
 	"requirePragma": false,
 	"insertPragma": false,
 	"proseWrap": "preserve",
-	"endOfLine": "crlf",
+	"endOfLine": "lf",
 	"printWidth": 100,
 	"tabWidth": 4,
 	"useTabs": false
