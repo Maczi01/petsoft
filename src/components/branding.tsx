@@ -1,12 +1,12 @@
-import { H1 } from "@/components/h1";
+import { H1 } from '@/components/h1';
 
 export const Branding = () => {
-	return (
-		<section>
-			<H1>
-				Pet <span className="font-semibold">Soft</span>
-			</H1>
-			<p className="text-lg opacity-80">Manage your pets with ease</p>
-		</section>
-	);
+    return (
+        <section>
+            <H1>
+                Pet <span className="font-semibold">Soft</span>
+            </H1>
+            <p className="text-lg opacity-80">Manage your pets with ease</p>
+        </section>
+    );
 };
