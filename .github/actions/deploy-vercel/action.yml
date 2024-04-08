@@ -35,7 +35,7 @@ jobs:
       - name: Deploy app to Vercel
         uses: vercel/action@latest
         with:
-          token: ${{ github.event.inputs.vercel_token }}
+          github-token: ${{ secrets.GITHUB_TOKEN }}
         env:
-          VERCEL_ORG_ID: ${{ github.event.inputs.vercel_org_id }}
-          VERCEL_PROJECT_ID: ${{ github.event.inputs.vercel_project_id }}
+          VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
+          VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
