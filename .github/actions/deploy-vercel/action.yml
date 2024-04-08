@@ -12,20 +12,10 @@ on:
       vercel_project_id:
         required: true
         description: 'Vercel project ID'
-    secrets:
-      PET_TOKEN:
-        required: true
-      VERCEL_ORG_ID:
-        required: true
-      VERCEL_PROJECT_ID:
-        required: true
 
 jobs:
   deploy-vercel:
-    environment:
-      name: 'Staging'
     runs-on: ubuntu-latest
-
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -42,10 +32,10 @@ jobs:
       - name: Build app
         run: npm run build
 
-      - name: Deploy app to Vercel production env
+      - name: Deploy app to Vercel
         uses: vercel/action@latest
         with:
-          token: ${{ inputs.vercel_token }}
+          token: ${{ github.event.inputs.vercel_token }}
         env:
-          VERCEL_ORG_ID: ${{ inputs.vercel_org_id }}
-          VERCEL_PROJECT_ID: ${{ inputs.vercel_project_id }}
+          VERCEL_ORG_ID: ${{ github.event.inputs.vercel_org_id }}
+          VERCEL_PROJECT_ID: ${{ github.event.inputs.vercel_project_id }}
