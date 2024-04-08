@@ -1,35 +1,36 @@
-name: Deploy - Vercel
+name: Deploy Vercel
+description: Deploy Vercel in two modes
 
-on:
-  workflow_call:
+inputs:
+  vercel-token:
+    description: 'Vercel token'
+    required: true
+  mode:
+    description: 'Deployment mode'
+    required: true
+    default: 'production'
 
-jobs:
-  deploy-vercel:
-    environment:
-      name: 'Staging'
-    runs-on: ubuntu-latest
+runs:
+  using: 'composite'
+  steps:
+    - name: Install Vercel CLI
+      run: npm install --global vercel@canary
+      shell: bash
 
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
+    - name: PROD Vercel Deployment
+      if: ${{ inputs.mode == 'production' }}
+      run: |
+        vercel pull --yes --environment=production --token=${{ inputs.vercel-token }}
+        vercel build --prod --token=${{ inputs.vercel-token }}
+        vercel deploy --prebuilt --prod --token=${{ inputs.vercel-token }}
+      shell: bash
 
-      - name: Configure node
-        uses: ./.github/actions/setup-project
-
-      - name: Lint code
-        run: npm run lint
-
-      - name: Run unit tests
-        run: npm run test
-
-      - name: Build app
-        run: npm run build
-
-      - name: Deploy app to Vercel production env
-        uses: ./.github/actions/deploy-vercel
-        with:
-          mode: 'production'
-          vercel-token: ${{ secrets.PET_TOKEN }}
-        env:
-          VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
-          VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
+    - name: PREVIEW Vercel Deployment
+      if: ${{ inputs.mode == 'preview' }}
+      run: |
+        vercel pull --yes --environment=preview --token=${{ inputs.vercel-token }}
+        vercel build --token=${{ inputs.vercel-token }}
+        DEPLOY_OUTPUT="$(vercel deploy --token=${{ inputs.vercel-token }})"
+        DEPLOY_URL=$(echo "$DEPLOY_OUTPUT" | grep http | tail -n 1)
+        echo "DEPLOY_URL=$DEPLOY_URL" >> $GITHUB_ENV
+      shell: bash
