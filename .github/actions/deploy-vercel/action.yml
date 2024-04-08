@@ -2,6 +2,23 @@ name: Deploy - Vercel
 
 on:
   workflow_call:
+    inputs:
+      vercel_token:
+        required: true
+        description: 'Vercel token for deployment'
+      vercel_org_id:
+        required: true
+        description: 'Vercel organization ID'
+      vercel_project_id:
+        required: true
+        description: 'Vercel project ID'
+    secrets:
+      PET_TOKEN:
+        required: true
+      VERCEL_ORG_ID:
+        required: true
+      VERCEL_PROJECT_ID:
+        required: true
 
 jobs:
   deploy-vercel:
@@ -26,10 +43,9 @@ jobs:
         run: npm run build
 
       - name: Deploy app to Vercel production env
-        uses: ./.github/actions/deploy-vercel
+        uses: vercel/action@latest
         with:
-          mode: 'production'
-          vercel-token: ${{ secrets.PET_TOKEN }}
+          token: ${{ inputs.vercel_token }}
         env:
-          VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
-          VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
+          VERCEL_ORG_ID: ${{ inputs.vercel_org_id }}
+          VERCEL_PROJECT_ID: ${{ inputs.vercel_project_id }}

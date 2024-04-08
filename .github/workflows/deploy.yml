@@ -1,12 +1,7 @@
-name: Deploy on push
-
-on:
-  push:
-    branches:
-      - master
-
 jobs:
   deploy-vercel:
-    needs: deploy-vercel
     uses: ./.github/actions/deploy-vercel
-    secrets: inherit
+    with:
+      vercel_token: ${{ secrets.PET_TOKEN }}
+      vercel_org_id: ${{ secrets.VERCEL_ORG_ID }}
+      vercel_project_id: ${{ secrets.VERCEL_PROJECT_ID }}
