@@ -1,4 +1,4 @@
-/* eslint-disable @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-member-access */
+/* eslint-disable @typescript-eslint/no-unsafe-member-access */
 import { notFound } from 'next/navigation';
 import { getRequestConfig } from 'next-intl/server';
 
@@ -10,7 +10,8 @@ export default getRequestConfig(async ({ locale }) => {
     if (!locales.includes(locale)) notFound();
 
     return {
-        // @ts-expect-error - Ignore TypeScript errors on the next line
+        // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
         messages: (await import(`../messages/${locale}.json`)).default,
+        // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
     };
 });
