@@ -1,3 +1,8 @@
+import MDX from '@next/mdx';
+import createNextIntlPlugin from "next-intl/plugin";
+
+const withMdx = MDX();
+const withNextIntl = createNextIntlPlugin();
 /** @type {import('next').NextConfig} */
 const nextConfig = {
     images: {
@@ -8,6 +13,9 @@ const nextConfig = {
             },
         ],
     },
+    experimental: {
+        typedRoutes: true,
+    },
 };
 
-export default nextConfig;
+export default withNextIntl(withMdx(nextConfig));

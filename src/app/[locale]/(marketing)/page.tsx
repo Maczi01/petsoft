@@ -1,14 +1,13 @@
 import Image from 'next/image';
 import Link from 'next/link';
-import {Logo} from '../../components/Logo';
-import {Button} from '../../components/ui/button';
+import {Logo} from '../../../components/Logo';
+import {Button} from '../../../components/ui/button';
+import { getTranslations } from "next-intl/server";
 
-export default function Index() {
-    /*
-     * Replace the elements below with your own.
-     *
-     * Note: The corresponding styles are in the ./index.tailwind file.
-     */
+export default async function Page() {
+
+    const t = await getTranslations("Marketing");
+
     return (
         <main
             className="flex min-h-screen items-center justify-center gap-10
@@ -27,7 +26,8 @@ export default function Index() {
                     Manage your <span className="font-extrabold">pet</span> day care with ease
                 </h1>
                 <p className="max-w-[600px] text-2xl font-medium">
-                    Use Petsoft to easily keep track of you pets. Get lifetime access for $299
+                    {t("description")}
+                    {/*Use Petsoft to easily keep track of you pets. Get lifetime access for $299*/}
                 </p>
                 <div className="mt-10 space-x-3">
                     <Button asChild>
