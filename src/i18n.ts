@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-member-access */
 import { notFound } from 'next/navigation';
 import { getRequestConfig } from 'next-intl/server';
 
@@ -9,7 +10,7 @@ export default getRequestConfig(async ({ locale }) => {
     if (!locales.includes(locale)) notFound();
 
     return {
-        // tslint:disable-next-line:no-require-imports
+        // @ts-expect-error - Ignore TypeScript errors on the next line
         messages: (await import(`../messages/${locale}.json`)).default,
     };
 });
