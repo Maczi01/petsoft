@@ -4,7 +4,7 @@ import { PetList } from '@/components/pet-list';
 import { SearchForm } from '@/components/search-form';
 import { PetDetails } from '@/components/pet-details';
 import { ContentBlock } from '@/components/content-block';
-
+import { Pet } from '@/lib/types';
 export default async function Page() {
     const response = await fetch('https://bytegrad.com/course-assets/projects/petsoft/api/pets');
 
