@@ -8,7 +8,9 @@
     "start": "next start",
     "lint": "next lint",
     "test": "jest",
-    "test:watch": "jest --watchAll"
+    "test:watch": "jest --watchAll",
+    "prepare": "husky",
+    "commitlint": "commitlint"
   },
   "dependencies": {
     "@mdx-js/loader": "^3.0.1",
@@ -28,6 +30,8 @@
     "tailwindcss-animate": "^1.0.7"
   },
   "devDependencies": {
+    "@commitlint/cli": "^19.2.1",
+    "@commitlint/config-conventional": "^19.1.0",
     "@playwright/test": "^1.43.0",
     "@testing-library/jest-dom": "^6.4.2",
     "@testing-library/react": "^14.2.2",
@@ -46,6 +50,7 @@
     "eslint-plugin-jest-dom": "^5.2.0",
     "eslint-plugin-prettier": "^5.1.3",
     "eslint-plugin-testing-library": "^6.2.0",
+    "husky": "^9.0.11",
     "jest": "^29.7.0",
     "jest-environment-jsdom": "^29.7.0",
     "postcss": "^8",
