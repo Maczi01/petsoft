@@ -9,7 +9,7 @@ export default async function Page() {
     const response = await fetch('https://bytegrad.com/course-assets/projects/petsoft/api/pets');
 
     if (!response.ok) {s
-        throw Error('Failed to fetch pets');
+        throw Error('Failed to fetch data pets');
     }
     const petsData = (await response.json()) as Pet[];
     return (
