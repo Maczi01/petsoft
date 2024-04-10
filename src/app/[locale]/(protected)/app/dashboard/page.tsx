@@ -8,7 +8,7 @@ import { ContentBlock } from '@/components/content-block';
 export default async function Page() {
     const response = await fetch('https://bytegrad.com/course-assets/projects/petsoft/api/pets');
 
-    if (!response.ok) {s
+    if (!response.ok) {
         throw Error('Failed to fetch data pets');
     }
     const petsData = (await response.json()) as Pet[];

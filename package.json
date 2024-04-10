@@ -10,7 +10,7 @@
     "test": "jest",
     "test:watch": "jest --watchAll",
     "prepare": "husky",
-    "commitlint": "commitlint --from=master"
+    "commitlint": "commitlint"
   },
   "dependencies": {
     "@mdx-js/loader": "^3.0.1",
