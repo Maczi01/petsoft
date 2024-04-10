@@ -8,10 +8,10 @@ import { ContentBlock } from '@/components/content-block';
 export default async function Page() {
     const response = await fetch('https://bytegrad.com/course-assets/projects/petsoft/api/pets');
 
-    if (!response.ok) {
+    if (!response.ok) {s
         throw Error('Failed to fetch pets');
     }
-    const petsData = await response.json();
+    const petsData = (await response.json()) as Pet[];
     return (
         <main>
             <div className="flex items-center justify-between py-8 text-white">
