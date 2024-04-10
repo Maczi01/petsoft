@@ -20,7 +20,7 @@ export const PetList = ({ petsData }: PetListProps) => {
                                 alt="Pet image"
                                 width={45}
                                 height={45}
-                                className="w-[45px] h-[45px] rounded-full object-cover"
+                                className="size-[45px] rounded-full object-cover"
                             />
                             <p className="font-semibold">{pet.name}</p>
                         </button>
