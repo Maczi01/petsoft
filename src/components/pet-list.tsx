@@ -7,7 +7,7 @@ export const PetList = () => {
     const { pets, selectedPetId, handleChangeSelectedPetId } = usePetContext();
 
     return (
-        <ul className='border-b border-black/[0.08] bg-white'>
+        <ul className="border-b border-black/[0.08] bg-white">
             {pets.map(pet => {
                 return (
                     <li key={pet.id}>
@@ -22,12 +22,12 @@ export const PetList = () => {
                         >
                             <Image
                                 src={pet.imageUrl}
-                                alt='Pet image'
+                                alt="Pet image"
                                 width={45}
                                 height={45}
-                                className='size-[45px] rounded-full object-cover'
+                                className="size-[45px] rounded-full object-cover"
                             />
-                            <p className='font-semibold'>{pet.name}</p>
+                            <p className="font-semibold">{pet.name}</p>
                         </button>
                     </li>
                 );

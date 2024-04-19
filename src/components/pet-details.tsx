@@ -4,24 +4,6 @@ import Image from 'next/image';
 import { usePetContext } from '@/lib/hooks';
 import { Pet } from '@/lib/types';
 
-export const PetDetails = () => {
-    const { selectedPet } = usePetContext();
-
-    return (
-        <section className=" flex flex-col size-full">
-            {!selectedPet ? (
-                <EmptyView />
-            ) : (
-                <>
-                    <TopBar pet={selectedPet} />
-                    <OtherInfo selectedPet={selectedPet} />
-                    <Notes pet={selectedPet}></Notes>
-                </>
-            )}
-        </section>
-    );
-};
-
 const EmptyView = () => {
     return (
         <div className="flex items-center justify-center w-full h-full">
@@ -38,7 +20,7 @@ const TopBar = ({ pet }: { pet: Pet | undefined }) => {
                 alt="Pet image"
                 width={75}
                 height={75}
-                className="h-[75px] w-[75px] rounded-full object-cover"
+                className="size-[75px] rounded-full object-cover"
             />
             <h2 className="text-3xl font-semibold leading-7 ml-5">{pet?.name || 'Select a pet'}</h2>
         </div>
@@ -64,6 +46,23 @@ const Notes = ({ pet }: { pet: Pet | undefined }) => {
     return (
         <section className="flex-1 bg-white px-7 py-5 rounded-md mb-9 mx-8 border-b border-black/[0.08]">
             {pet?.notes}
+        </section>
+    );
+};
+export const PetDetails = () => {
+    const { selectedPet } = usePetContext();
+
+    return (
+        <section className=" flex flex-col size-full">
+            {!selectedPet ? (
+                <EmptyView />
+            ) : (
+                <>
+                    <TopBar pet={selectedPet} />
+                    <OtherInfo selectedPet={selectedPet} />
+                    <Notes pet={selectedPet}></Notes>
+                </>
+            )}
         </section>
     );
 };
