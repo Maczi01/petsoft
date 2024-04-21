@@ -3,6 +3,7 @@
 import Image from 'next/image';
 import { usePetContext } from '@/lib/hooks';
 import { Pet } from '@/lib/types';
+import { PetButton } from '@/components/pet-button';
 
 const EmptyView = () => {
     return (
@@ -23,6 +24,10 @@ const TopBar = ({ pet }: { pet: Pet | undefined }) => {
                 className="size-[75px] rounded-full object-cover"
             />
             <h2 className="ml-5 text-3xl font-semibold leading-7">{pet?.name || 'Select a pet'}</h2>
+            <div className="ml-auto space-x-2">
+                <PetButton actionType="edit" />
+                <PetButton actionType="checkout" />
+            </div>
         </div>
     );
 };
