@@ -5,6 +5,9 @@ const withMdx = MDX();
 const withNextIntl = createNextIntlPlugin();
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+    // output: 'export',
+    // distDir: 'dist',
+
     images: {
         remotePatterns: [
             {
@@ -16,6 +19,9 @@ const nextConfig = {
                 hostname: "images.unsplash.com",
             },
         ],
+        unoptimized: true,
+        // distDir: 'dist',
+
     },
     experimental: {
         typedRoutes: false,

@@ -6,7 +6,7 @@ import { Pet } from '@/lib/types';
 
 const EmptyView = () => {
     return (
-        <div className="flex items-center justify-center w-full h-full">
+        <div className="flex size-full items-center justify-center">
             <h2 className="text-3xl font-semibold">No pet selected</h2>
         </div>
     );
@@ -14,7 +14,7 @@ const EmptyView = () => {
 
 const TopBar = ({ pet }: { pet: Pet | undefined }) => {
     return (
-        <div className="flex items-center bg-white px-8 py-5 border-b border-black/[0.08]">
+        <div className="flex items-center border-b border-light bg-white px-8 py-5">
             <Image
                 src={pet?.imageUrl || ''}
                 alt="Pet image"
@@ -22,7 +22,7 @@ const TopBar = ({ pet }: { pet: Pet | undefined }) => {
                 height={75}
                 className="size-[75px] rounded-full object-cover"
             />
-            <h2 className="text-3xl font-semibold leading-7 ml-5">{pet?.name || 'Select a pet'}</h2>
+            <h2 className="ml-5 text-3xl font-semibold leading-7">{pet?.name || 'Select a pet'}</h2>
         </div>
     );
 };
@@ -44,7 +44,7 @@ const OtherInfo = ({ selectedPet }: { selectedPet: Pet | undefined }) => {
 
 const Notes = ({ pet }: { pet: Pet | undefined }) => {
     return (
-        <section className="flex-1 bg-white px-7 py-5 rounded-md mb-9 mx-8 border-b border-black/[0.08]">
+        <section className="mx-8 mb-9 flex-1 rounded-md border-b border-light bg-white px-7 py-5">
             {pet?.notes}
         </section>
     );
@@ -53,7 +53,7 @@ export const PetDetails = () => {
     const { selectedPet } = usePetContext();
 
     return (
-        <section className=" flex flex-col size-full">
+        <section className=" flex size-full flex-col">
             {!selectedPet ? (
                 <EmptyView />
             ) : (
