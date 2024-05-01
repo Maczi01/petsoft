@@ -13,7 +13,8 @@ const EmptyView = () => {
     );
 };
 
-const TopBar = ({ pet }: { pet: Pet | undefined }) => {
+const TopBar = ({ pet }: { pet: Pet }) => {
+    const { handleCheckoutPet } = usePetContext();
     return (
         <div className="flex items-center border-b border-light bg-white px-8 py-5">
             <Image
@@ -25,8 +26,10 @@ const TopBar = ({ pet }: { pet: Pet | undefined }) => {
             />
             <h2 className="ml-5 text-3xl font-semibold leading-7">{pet?.name || 'Select a pet'}</h2>
             <div className="ml-auto space-x-2">
-                <PetButton actionType="edit" />
-                <PetButton actionType="checkout" />
+                <PetButton actionType="edit"> Edit</PetButton>
+                <PetButton actionType="checkout" onClick={() => handleCheckoutPet(pet.id)}>
+                    Checkout
+                </PetButton>
             </div>
         </div>
     );

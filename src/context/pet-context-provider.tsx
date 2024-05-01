@@ -14,6 +14,9 @@ type TPetContext = {
     selectedPetId: string | null;
     selectedPet: Pet | undefined;
     numberOfPets: number;
+    handleCheckoutPet: (id: string) => void;
+    handleAddPet: (pet: Omit<Pet, 'id'>) => void;
+    handleEditPet: (petId: string, pet: Omit<Pet, 'id'>) => void;
 };
 
 export const PetContext = createContext<TPetContext | null>(null);
@@ -28,6 +31,30 @@ export const PetContextProvider = ({ data, children }: PetContextProvider) => {
         setSelectedPetId(id);
     };
 
+    const handleCheckoutPet = (id: string) => {
+        const newPets = pets.filter(pet => pet.id !== id);
+        setPets(newPets);
+        setSelectedPetId(null);
+    };
+
+    const handleAddPet = (newPet: Omit<Pet, 'id'>) => {
+        setPets(prev => [...prev, { id: crypto.randomUUID(), ...newPet }]);
+    };
+
+    const handleEditPet = (petId: string, newPetData: Omit<Pet, 'id'>) => {
+        setPets(prevState =>
+            prevState.map(pet => {
+                if (pet.id === petId) {
+                    return {
+                        ...pet,
+                        ...newPetData,
+                    };
+                }
+                return pet;
+            }),
+        );
+    };
+
     const value = {
         pets,
         setPets,
@@ -35,6 +62,9 @@ export const PetContextProvider = ({ data, children }: PetContextProvider) => {
         selectedPet,
         numberOfPets,
         handleChangeSelectedPetId,
+        handleCheckoutPet,
+        handleAddPet,
+        handleEditPet,
     };
 
     return <PetContext.Provider value={value}>{children}</PetContext.Provider>;

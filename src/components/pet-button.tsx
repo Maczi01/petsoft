@@ -1,24 +1,46 @@
-import { Button } from '@/components/ui/button';
-import { PlusIcon } from '@radix-ui/react-icons';
-import { HTMLProps, ReactNode } from 'react';
+'use client';
 
-type PetButton = {
+import { PlusIcon } from '@radix-ui/react-icons';
+import { Button } from './ui/button';
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from './ui/dialog';
+import { PetForm } from '@/components/pet-form';
+import { ComponentProps, ReactNode, useState } from 'react';
+
+type PetButtonProps = {
     actionType: 'add' | 'edit' | 'checkout';
     children?: ReactNode;
-} & HTMLProps<HTMLButtonElement>;
+} & ComponentProps<'button'>;
 
-export const PetButton = ({ actionType, onClick, children }: PetButton) => {
-    if (actionType === 'add') {
+export const PetButton = ({ actionType, disabled, onClick, children }: PetButtonProps) => {
+    const [isFormOpen, setIsFormOpen] = useState(false);
+
+    if (actionType === 'checkout') {
         return (
-            <Button size="icon" onClick={onClick}>
-                <PlusIcon className="size-6" />
+            <Button variant="secondary" disabled={disabled} onClick={onClick}>
+                {children}
             </Button>
         );
     }
-    if (actionType === 'edit') {
-        return <Button variant="secondary">{children}</Button>;
-    }
-    if (actionType === 'checkout') {
-        return <Button variant="secondary">{children}</Button>;
-    }
+
+    return (
+        <Dialog open={isFormOpen} onOpenChange={setIsFormOpen}>
+            <DialogTrigger asChild>
+                {actionType === 'add' ? (
+                    <Button size="icon">
+                        <PlusIcon className="size-6" />
+                    </Button>
+                ) : (
+                    <Button variant="secondary">{children}</Button>
+                )}
+            </DialogTrigger>
+
+            <DialogContent>
+                <DialogHeader>
+                    <DialogTitle>{actionType === 'add' ? 'Add a new pet' : 'Edit pet'}</DialogTitle>
+                </DialogHeader>
+
+                <PetForm actionType={actionType} onFormSubmission={() => setIsFormOpen(false)} />
+            </DialogContent>
+        </Dialog>
+    );
 };
