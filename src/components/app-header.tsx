@@ -1,9 +1,9 @@
 'use client';
 
-import { Logo } from '../../src/components/Logo';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { cn } from '../lib/utils';
+import { cn } from '@/lib/utils';
+import { Logo } from '@/components/logo';
 
 const routes = [
     {
@@ -18,7 +18,6 @@ const routes = [
 
 export const AppHeader = () => {
     const activePathName = usePathname();
-
     return (
         <header className="flex items-center justify-between border-b border-white/10 py-2">
             <Logo />
