@@ -21,10 +21,9 @@ type TPetContext = {
 
 export const PetContext = createContext<TPetContext | null>(null);
 
-export const PetContextProvider = ({ data, children }: PetContextProvider) => {
-    const [pets, setPets] = useState(data);
+export const PetContextProvider = ({ data: pets, children }: PetContextProvider) => {
+    const [, setPets] = useState(pets);
     const [selectedPetId, setSelectedPetId] = useState<string | null>(null);
-
     const selectedPet = pets.find(pet => pet.id === selectedPetId);
     const numberOfPets = pets.length;
     const handleChangeSelectedPetId = (id: string) => {
@@ -37,8 +36,9 @@ export const PetContextProvider = ({ data, children }: PetContextProvider) => {
         setSelectedPetId(null);
     };
 
-    const handleAddPet = (newPet: Omit<Pet, 'id'>) => {
-        setPets(prev => [...prev, { id: crypto.randomUUID(), ...newPet }]);
+    const handleAddPet = async () => {
+        // setPets(prev => [...prev, { id: crypto.randomUUID(), ...newPet }]);
+        // await addPet(newPet);
     };
 
     const handleEditPet = (petId: string, newPetData: Omit<Pet, 'id'>) => {
