@@ -5,6 +5,7 @@ import { PetContextProvider } from '@/context/pet-context-provider';
 import { Pet } from '@/lib/types';
 import { SearchContextProvider } from '@/context/search-context-provider';
 import prisma from '@/lib/db';
+import { Toaster } from '@/components/ui/sonner';
 
 export default async function Layout({ children }: { children: React.ReactNode }) {
     // const response = await fetch('https://bytegrad.com/course-assets/projects/petsoft/api/pets');
@@ -24,6 +25,7 @@ export default async function Layout({ children }: { children: React.ReactNode }
                 </SearchContextProvider>
                 <AppFooter />
             </div>
+            <Toaster />
         </div>
     );
 }
