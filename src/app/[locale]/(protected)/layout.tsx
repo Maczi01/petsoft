@@ -25,7 +25,7 @@ export default async function Layout({ children }: { children: React.ReactNode }
                 </SearchContextProvider>
                 <AppFooter />
             </div>
-            <Toaster />
+            <Toaster position="top-right" />
         </div>
     );
 }
