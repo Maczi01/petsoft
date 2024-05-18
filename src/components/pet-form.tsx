@@ -4,11 +4,9 @@ import { Label } from '@/components/ui/label';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { usePetContext } from '@/lib/hooks';
-import { addPet } from '@/actions/actions';
+import { addPet, editPet } from '@/actions/actions';
 import { PetFormButton } from '@/components/pet-form-button';
 import { toast } from 'sonner';
-
-import { useFormState } from 'react';
 
 type PetFormProps = {
     actionType: 'add' | 'edit';
@@ -17,17 +15,24 @@ type PetFormProps = {
 
 export function PetForm({ actionType, onFormSubmission }: PetFormProps) {
     const { selectedPet } = usePetContext();
-    useFormState();
     return (
         <form
             action={async (formData: FormData) => {
-                const error = await addPet(formData);
-                if (error) {
-                    // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
-                    toast.warning(error?.message || 'Failed to add pet');
-                    return;
+                if (actionType === 'add') {
+                    const error = await addPet(formData);
+                    if (error) {
+                        // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
+                        toast.warning(error?.message || 'Failed to add pet');
+                        return;
+                    }
+                } else if (actionType === 'edit') {
+                    const error = await editPet(selectedPet?.id || '', formData);
+                    if (error) {
+                        // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
+                        toast.warning(error?.message || 'Failed to edit pet');
+                        return;
+                    }
                 }
-
                 onFormSubmission();
             }}
             className="flex flex-col"
