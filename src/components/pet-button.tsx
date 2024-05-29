@@ -26,11 +26,11 @@ export const PetButton = ({ actionType, disabled, onClick, children }: PetButton
         <Dialog open={isFormOpen} onOpenChange={setIsFormOpen}>
             <DialogTrigger asChild>
                 {actionType === 'add' ? (
-                    <Button size="icon">
+                    <Button size="icon" disabled={disabled}>
                         <PlusIcon className="size-6" />
                     </Button>
                 ) : (
-                    <Button variant="secondary">{children}</Button>
+                    <Button variant="secondary" disabled={disabled}>{children}</Button>
                 )}
             </DialogTrigger>
 
