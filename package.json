@@ -10,7 +10,9 @@
     "test": "vitest",
     "test:watch": "jest --watchAll",
     "prepare": "husky",
-    "commitlint": "commitlint"
+    "commitlint": "commitlint",
+    "test:e2e": "playwright test",
+    "test:e2e:dev": "playwright test --debug"
   },
   "prisma": {
     "seed": "ts-node --compiler-options {\"module\":\"CommonJS\"} prisma/seed.ts"
