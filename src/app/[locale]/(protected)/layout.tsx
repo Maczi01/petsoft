@@ -14,6 +14,8 @@ export default async function Layout({ children }: { children: React.ReactNode }
     //     throw Error('Failed to fetch pets');
     // }
     // const petsData = (await response.json()) as Pet[];
+    // eslint-disable-next-line max-len
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-call,@typescript-eslint/no-unsafe-member-access
     const data = (await prisma?.pet.findMany()) as Pet[];
     return (
         <div>

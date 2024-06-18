@@ -5,7 +5,7 @@ import Image from 'next/image';
 export const Logo = () => {
     return (
         <Link href={'/'}>
-            {/* eslint-disable-next-liqne @typescript-eslint/no-unsafe-assignment */}
+            {/* eslint-disable-next-line @typescript-eslint/no-unsafe-assignment */}
             <Image src={logo} alt="Petsoft logo" />
         </Link>
     );

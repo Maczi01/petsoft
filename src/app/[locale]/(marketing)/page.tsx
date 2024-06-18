@@ -1,7 +1,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
-import { Logo } from '../../../components/Logo';
-import { Button } from '../../../components/ui/button';
+import { Logo } from '@/components/logo';
+import { Button } from '@/components/ui/button';
 import { getTranslations } from 'next-intl/server';
 
 export default async function Page() {

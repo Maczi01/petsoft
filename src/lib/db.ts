@@ -11,6 +11,7 @@ declare global {
 // eslint-disable-next-line max-len
 // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment,@typescript-eslint/ban-ts-comment
 // @ts-expect-error
+// eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
 const prisma = globalThis.prisma ?? prismaClientSingleton();
 
 export default prisma;

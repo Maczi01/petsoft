@@ -63,6 +63,9 @@
         "@typescript-eslint/semi": [
           "warn"
         ],
+        "no-misusing-promises": [
+          0
+        ],
         "@typescript-eslint/space-before-function-paren": [
           0
         ],
