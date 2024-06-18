@@ -4,7 +4,6 @@ import Image from 'next/image';
 import { usePetContext } from '@/lib/hooks';
 import { Pet } from '@/lib/types';
 import { PetButton } from '@/components/pet-button';
-import { deletePet } from '@/actions/actions';
 import { useTransition } from 'react';
 
 const EmptyView = () => {
@@ -16,7 +15,8 @@ const EmptyView = () => {
 };
 
 const TopBar = ({ pet }: { pet: Pet }) => {
-    const [isPending, startTransition] = useTransition();
+    const { handleCheckoutPet } = usePetContext();
+    const [isPending] = useTransition();
     return (
         <div className="flex items-center border-b border-light bg-white px-8 py-5">
             <Image
@@ -32,11 +32,7 @@ const TopBar = ({ pet }: { pet: Pet }) => {
                 <PetButton
                     actionType="checkout"
                     disabled={isPending}
-                    onClick={async () => {
-                        startTransition(async () => {
-                            await deletePet(pet.id);
-                        });
-                    }}
+                    onClick={async () => await handleCheckoutPet(pet.id)}
                 >
                     Checkout
                 </PetButton>

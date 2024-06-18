@@ -5,6 +5,7 @@ import { Button } from './ui/button';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from './ui/dialog';
 import { PetForm } from '@/components/pet-form';
 import { ComponentProps, ReactNode, useState } from 'react';
+import { flushSync } from 'react-dom';
 
 type PetButtonProps = {
     actionType: 'add' | 'edit' | 'checkout';
@@ -30,7 +31,9 @@ export const PetButton = ({ actionType, disabled, onClick, children }: PetButton
                         <PlusIcon className="size-6" />
                     </Button>
                 ) : (
-                    <Button variant="secondary" disabled={disabled}>{children}</Button>
+                    <Button variant="secondary" disabled={disabled}>
+                        {children}
+                    </Button>
                 )}
             </DialogTrigger>
 
@@ -39,7 +42,14 @@ export const PetButton = ({ actionType, disabled, onClick, children }: PetButton
                     <DialogTitle>{actionType === 'add' ? 'Add a new pet' : 'Edit pet'}</DialogTitle>
                 </DialogHeader>
 
-                <PetForm actionType={actionType} onFormSubmission={() => setIsFormOpen(false)} />
+                <PetForm
+                    actionType={actionType}
+                    onFormSubmission={() => {
+                        flushSync(() => {
+                            setIsFormOpen(false);
+                        });
+                    }}
+                />
             </DialogContent>
         </Dialog>
     );

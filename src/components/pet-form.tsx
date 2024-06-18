@@ -4,9 +4,7 @@ import { Label } from '@/components/ui/label';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { usePetContext } from '@/lib/hooks';
-import { addPet, editPet } from '@/actions/actions';
 import { PetFormButton } from '@/components/pet-form-button';
-import { toast } from 'sonner';
 
 type PetFormProps = {
     actionType: 'add' | 'edit';
@@ -14,26 +12,25 @@ type PetFormProps = {
 };
 
 export function PetForm({ actionType, onFormSubmission }: PetFormProps) {
-    const { selectedPet } = usePetContext();
+    const { selectedPet, handleAddPet, handleEditPet } = usePetContext();
     return (
         <form
             action={async (formData: FormData) => {
-                if (actionType === 'add') {
-                    const error = await addPet(formData);
-                    if (error) {
-                        // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
-                        toast.warning(error?.message || 'Failed to add pet');
-                        return;
-                    }
-                } else if (actionType === 'edit') {
-                    const error = await editPet(selectedPet?.id || '', formData);
-                    if (error) {
-                        // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
-                        toast.warning(error?.message || 'Failed to edit pet');
-                        return;
-                    }
-                }
                 onFormSubmission();
+                const petData = {
+                    name: formData.get('name') as string,
+                    ownerName: formData.get('ownerName') as string,
+                    age: parseInt(formData.get('age') as string),
+                    notes: formData.get('notes') as string,
+                    imageUrl:
+                        (formData.get('imageUrl') as string) ||
+                        'https://bytegrad.com/course-assets/react-nextjs/pet-placeholder.png',
+                };
+                if (actionType === 'add') {
+                    await handleAddPet(petData);
+                } else if (actionType === 'edit') {
+                    await handleEditPet(selectedPet?.id || '', petData);
+                }
             }}
             className="flex flex-col"
         >
