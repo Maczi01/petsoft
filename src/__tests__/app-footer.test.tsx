@@ -1,7 +1,7 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
 import { describe, expect, it } from 'vitest';
-import { AppFooter } from '../components/app-footer';
+import { AppFooter } from '@/components/app-footer';
 
 // Mock usePathname hook
 // vitest.mock('next/navigation', () => ({
