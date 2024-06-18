@@ -32,7 +32,7 @@ const TopBar = ({ pet }: { pet: Pet }) => {
                 <PetButton
                     actionType="checkout"
                     disabled={isPending}
-                    onClick={async () => await handleCheckoutPet(pet.id)}
+                    onClick={() => handleCheckoutPet(pet.id)}
                 >
                     Checkout
                 </PetButton>

@@ -16,9 +16,9 @@ type TPetContext = {
     selectedPetId: string | null;
     selectedPet: Pet | undefined;
     numberOfPets: number;
-    handleCheckoutPet: (id: string) => Promise<void>;
-    handleAddPet: (pet: Omit<Pet, 'id'>) => Promise<void>;
-    handleEditPet: (petId: string, pet: Omit<Pet, 'id'>) => Promise<void>;
+    handleCheckoutPet: (id: Pet['id']) => void;
+    handleAddPet: (pet: Omit<Pet, 'id'>) => void;
+    handleEditPet: (petId: string, pet: Omit<Pet, 'id'>) => void;
 };
 
 export const PetContext = createContext<TPetContext | null>(null);
