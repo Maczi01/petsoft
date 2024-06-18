@@ -1,7 +1,7 @@
 'use client';
 
 import { createContext, ReactNode, useOptimistic, useState } from 'react';
-import { Pet } from '@/lib/types';
+import { Pet, PetEssentials } from '@/lib/types';
 import { toast } from 'sonner';
 import { addPet, deletePet, editPet } from '@/actions/actions';
 
@@ -24,9 +24,31 @@ type TPetContext = {
 export const PetContext = createContext<TPetContext | null>(null);
 
 export const PetContextProvider = ({ data: pets, children }: PetContextProvider) => {
-    const [optimisticPets, setOptimisticPets] = useOptimistic(pets, (state: Pet[], newPet: Pet) => {
-        return [...state, newPet];
-    });
+    const [optimisticPets, setOptimisticPets] = useOptimistic(
+        pets,
+        (state, { action, payload }) => {
+            switch (action) {
+                case 'add':
+                    // eslint-disable-next-line @typescript-eslint/no-unsafe-return
+                    return [...state, { ...payload, id: Math.random().toString() }];
+                case 'edit':
+                    // eslint-disable-next-line @typescript-eslint/no-unsafe-return
+                    return state.map(pet => {
+                        // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
+                        if (pet.id === payload.id) {
+                            // eslint-disable-next-line max-len
+                            // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access,@typescript-eslint/no-unsafe-return
+                            return { ...pet, ...payload.newPetData };
+                        }
+                        return pet;
+                    });
+                case 'delete':
+                    return state.filter(pet => pet.id !== payload);
+                default:
+                    return state;
+            }
+        },
+    );
     const [, setPets] = useState(pets);
     const [selectedPetId, setSelectedPetId] = useState<string | null>(null);
     const selectedPet = optimisticPets.find(pet => pet.id === selectedPetId);
@@ -35,44 +57,30 @@ export const PetContextProvider = ({ data: pets, children }: PetContextProvider)
         setSelectedPetId(id);
     };
 
-    const handleCheckoutPet = async (petId: string) => {
-        // const newPets = pets.filter(pet => pet.id !== id);
-        // setPets(newPets);
-        // startTransition(async () => {
-        await deletePet(petId);
-        // });
-        setSelectedPetId(null);
-    };
-
-    const handleAddPet = async (newPet: Omit<Pet, 'id'>) => {
-        // setPets(prev => [...prev, { id: crypto.randomUUID(), ...newPet }]);
-        setOptimisticPets({ id: crypto.randomUUID(), ...newPet });
+    const handleAddPet = async (newPet: PetEssentials) => {
+        setOptimisticPets({ action: 'add', payload: newPet });
         const error = await addPet(newPet);
         if (error) {
-            // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
-            toast.warning(error.error || 'Failed to add pet');
+            toast.warning(error.error);
             return;
         }
     };
-
-    const handleEditPet = async (petId: string, newPetData: Omit<Pet, 'id'>) => {
-        const error = await editPet(petId || '', newPetData);
+    const handleEditPet = async (petId: Pet['id'], newPetData: PetEssentials) => {
+        setOptimisticPets({ action: 'edit', payload: { id: petId, newPetData } });
+        const error = await editPet(petId, newPetData);
         if (error) {
-            // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
-            toast.warning(error.error || 'Failed to edit pet');
+            toast.warning(error.error);
             return;
         }
-        // setPets(prevState =>
-        //     prevState.map(pet => {
-        //         if (pet.id === petId) {
-        //             return {
-        //                 ...pet,
-        //                 ...newPetData,
-        //             };
-        //         }
-        //         return pet;
-        //     }),
-        // );
+    };
+    const handleCheckoutPet = async (petId: Pet['id']) => {
+        setOptimisticPets({ action: 'delete', payload: petId });
+        const error = await deletePet(petId);
+        if (error) {
+            toast.warning(error.error);
+            return;
+        }
+        setSelectedPetId(null);
     };
 
     const value = {

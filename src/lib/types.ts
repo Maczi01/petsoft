@@ -6,3 +6,5 @@ export type Pet = {
     age: number;
     notes: string;
 };
+
+export type PetEssentials = Omit<Pet, 'id' | 'createdAt' | 'updatedAt' | 'userId'>;
